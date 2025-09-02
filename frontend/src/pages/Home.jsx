@@ -147,34 +147,93 @@
 
 
 
+// import axios from "axios";
+// import BackendUrl from "../utils/BackendUrl";
+// import { useState } from "react";
+
+// const Home=()=>{
+//   const [file,setFile]=useState("")
+//   const onChangeHandler=(e)=>{
+//     setFile(e.target.files[0]);
+//     console.log(file)
+//   }
+//   const onsubmitHandler=async()=>{
+//     const formData=new FormData();
+//     formData.append("file",file)
+//      let api=`${BackendUrl}upload`;
+//      try {
+//         const response = await axios.post(api, formData);
+//         console.log(response)
+//         alert(`File: + response.data.filename+"successfully uploaded`)
+//      } catch (error) {
+//        console.log(error)
+//      }  
+//   }
+//   return(
+//     <>
+//      <h3>Welcome to home page!!</h3>
+    
+//      Upload your images: <input type="file" onChange={onChangeHandler}/><br/><br/>
+//      <button onClick={onsubmitHandler}>Upload</button>
+//     </>
+//   )
+// }
+// export default Home;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 import axios from "axios";
-import BackendUrl from "../utils/BackendUrl";
+
 import { useState } from "react";
 
 const Home=()=>{
-  const [file,setFile]=useState("")
-  const onChangeHandler=(e)=>{
-    setFile(e.target.files[0]);
-    console.log(file)
+  const [image,setImage]=useState("")
+  const handleImage=(e)=>{
+    setImage(e.target.files[0]);
+    // console.log(file)
   }
-  const onsubmitHandler=async()=>{
+  const handleSubmit=async()=>{
+    let api="https://api.cloudinary.com/v1_1/dxu8qers5/image/upload";
     const formData=new FormData();
-    formData.append("file",file)
-     let api=`${BackendUrl}upload`;
-     try {
-        const response = await axios.post(api, formData);
-        console.log(response)
-        alert(`File: + response.data.filename+"successfully uploaded`)
-     } catch (error) {
-       console.log(error)
-     }
+    formData.append("file",image)
+    formData.append("upload_preset","riyaphoto");
+    formData.append("cloud_name","dxu8qers5");
+    const response=await axios.post(api,formData);
+    console.log(response);
+    console.log(response.data.url)
+
+     
   }
   return(
     <>
      <h3>Welcome to home page!!</h3>
-    
-     Upload your images: <input type="file" onChange={onChangeHandler}/><br/><br/>
-     <button onClick={onsubmitHandler}>Upload</button>
+    Upload your images: <input type="file" onChange={handleImage}/><br/><br/>
+     <button onClick={handleSubmit}>Upload</button>
     </>
   )
 }
