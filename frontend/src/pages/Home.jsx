@@ -207,34 +207,90 @@
 
 
 
-import axios from "axios";
+// import axios from "axios";
+
+// import { useState } from "react";
+
+// const Home=()=>{
+//   const [image,setImage]=useState("")
+//   const handleImage=(e)=>{
+//     setImage(e.target.files[0]);
+//     // console.log(file)
+//   }
+//   const handleSubmit=async()=>{
+//     let api="https://api.cloudinary.com/v1_1/dxu8qers5/image/upload";
+//     const formData=new FormData();
+//     formData.append("file",image)
+//     formData.append("upload_preset","riyaphoto");
+//     formData.append("cloud_name","dxu8qers5");
+//     const response=await axios.post(api,formData);
+//     console.log(response);
+//     console.log(response.data.url)
+// }
+//   return(
+//     <>
+//      <h3>Welcome to home page!!</h3>
+//     Upload your images: <input type="file" onChange={handleImage}/><br/><br/>
+//      <button onClick={handleSubmit}>Upload</button>
+//     </>
+//   )
+// }
+// export default Home;
+
+
+
+
+
+
+
+
+
+
+
 
 import { useState } from "react";
-
+import axios from "axios";
 const Home=()=>{
-  const [image,setImage]=useState("")
-  const handleImage=(e)=>{
-    setImage(e.target.files[0]);
-    // console.log(file)
-  }
-  const handleSubmit=async()=>{
-    let api="https://api.cloudinary.com/v1_1/dxu8qers5/image/upload";
-    const formData=new FormData();
-    formData.append("file",image)
-    formData.append("upload_preset","riyaphoto");
-    formData.append("cloud_name","dxu8qers5");
-    const response=await axios.post(api,formData);
-    console.log(response);
-    console.log(response.data.url)
+  const [files, setFiles] = useState([]);
+ const [uploadedUrls, setUploadedUrls] = useState([]);
+ const handleUpload = async () => {
+  if (!files.length) return alert("Please select files");
+ const formData = new FormData();
+ for (let i = 0; i < files.length; i++) {
+ formData.append("files", files[i]);
+ }
+ try {
+ const res = await axios.post("http://localhost:5000/upload-multiple",
+formData, {
+ headers: { "Content-Type": "multipart/form-data" },
+ });
+ setUploadedUrls(res.data.files);
+ } catch (err) {
+ console.error(err);
+ }
+ };
+ return (
+ <div>
+ <h2>Upload Multiple Files to Cloudinary</h2>
+ <input type="file" multiple onChange={(e) => setFiles([...e.target.files])}/>
+ <button onClick={handleUpload}>Upload</button>
 
-     
-  }
-  return(
-    <>
-     <h3>Welcome to home page!!</h3>
-    Upload your images: <input type="file" onChange={handleImage}/><br/><br/>
-     <button onClick={handleSubmit}>Upload</button>
-    </>
-  )
+
+ {uploadedUrls.length > 0 && (
+ <div>
+ <h3>Uploaded Files:</h3>
+ {uploadedUrls.map((url, index) => (
+ <div key={index} style={{ margin: "10px 0" }}>
+ <a href={url} target="_blank" rel="noreferrer">{url}</a>
+ <br />
+ {url.match(/\.(jpg|jpeg|png)$/) && (
+ <img src={url} alt="uploaded" style={{ width: "200px", marginTop:"5px" }} />
+ )}
+ </div>
+ ))}
+ </div>
+ )}
+ </div>
+ );
 }
 export default Home;

@@ -52,44 +52,105 @@
 // })
 
 
+//=======================================================MULTER========================================================================================================================
+// const express = require("express");
+// const app= express();
+// const bodyparser = require('body-parser')
+// const cors = require('cors');
 
+// const mongoose = require("mongoose");
+// const multer=require("multer")
+
+// require("dotenv").config();
+
+// // Body-parser middleware
+// app.use(bodyparser.urlencoded({ extended: true }))
+// app.use(bodyparser.json())
+// app.use(cors());
+
+// mongoose.connect(process.env.DBCON).then(()=>{
+//   console.log("Database successfully Connected!!!");
+// })
+
+// const storage=multer.diskStorage({
+//   destination:(req,file,cb)=>{
+//     cb(null,"uploads"); //save files to upload directory
+//   },
+//   filename:(req,file,cb)=>{
+//     cb(null,file.originalname);  // keep original file name
+//   }
+// })
+// const upload=multer({storage:storage})
+// app.post("/upload",upload.single("file"),(req,res)=>{
+//   const filename=req.file.originalname;
+//   console.log("file upload hogi!")
+//   res.send({filename:filename})
+// })
+
+
+// const Port = process.env.PORT || 8000
+
+// app.listen(Port, ()=>{
+//   console.log(`Server run on port ${Port}`);
+// })
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*========================================================================MULTIPLE FILE UPLOAD==================================================================*/
 const express = require("express");
-const app= express();
-const bodyparser = require('body-parser')
-const cors = require('cors');
-
-const mongoose = require("mongoose");
-const multer=require("multer")
-
 require("dotenv").config();
+const cors= require("cors");
+const multer= require("multer");
 
-// Body-parser middleware
-app.use(bodyparser.urlencoded({ extended: true }))
-app.use(bodyparser.json())
+const  { v2 } = require("cloudinary");
+const  { CloudinaryStorage } = require("multer-storage-cloudinary");
+const app = express();
 app.use(cors());
 
-mongoose.connect(process.env.DBCON).then(()=>{
-  console.log("Database successfully Connected!!!");
-})
+// Cloudinary Config
+v2.config({
+ cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+ api_key: process.env.CLOUDINARY_API_KEY,
+ api_secret: process.env.CLOUDINARY_API_SECRET,
+});
 
-const storage=multer.diskStorage({
-  destination:(req,file,cb)=>{
-    cb(null,"uploads"); //save files to upload directory
-  },
-  filename:(req,file,cb)=>{
-    cb(null,file.originalname);  // keep original file name
-  }
-})
-const upload=multer({storage:storage})
-app.post("/upload",upload.single("file"),(req,res)=>{
-  const filename=req.file.originalname;
-  console.log("file upload hogi!")
-  res,send({filename:filename})
-})
+// Multer Storage
+const storage = new CloudinaryStorage({
+ cloudinary: v2,
+ params: {
+ folder: "mern_uploads",
+ allowed_formats: ["jpg", "png", "jpeg", "pdf"],
+ },
+});
+
+const upload = multer({ storage: storage });
 
 
-const Port = process.env.PORT || 8000
+// Multiple file upload API
+app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
+ try {
+ const urls = req.files.map(file => file.path); // Cloudinary URLs
+ res.json({ success: true, files: urls });
+ } catch (err) {
+ res.status(500).json({ success: false, message: err.message });
+ }
+});
 
-app.listen(Port, ()=>{
-  console.log(`Server run on port ${Port}`);
-})
+
+app.listen(5000, () => console.log("Server running on port 5000"));
