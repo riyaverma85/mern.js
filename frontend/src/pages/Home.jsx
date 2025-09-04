@@ -306,6 +306,24 @@
 const Home=()=>{
   return(
     <>
+    <h2 className='h2'> User Registration </h2>
+           <Form id="from">
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Enter Name</Form.Label>
+        <Form.Control type="text" name="name" onChange={handleInput} />
+      </Form.Group>
+       <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Enter Email</Form.Label>
+        <Form.Control type="email" name="email"  onChange={handleInput} />
+      </Form.Group>
+       <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Enter Password</Form.Label>
+        <Form.Control type="password" name="password"  onChange={handleInput} />
+      </Form.Group>
+      <Button variant="primary" type="submit" onClick={handleSubmit}>
+        Submit
+      </Button>
+    </Form>
     </>
   )
 }

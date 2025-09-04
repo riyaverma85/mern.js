@@ -182,12 +182,6 @@ mongoose.connect(process.env.DBCON).then(()=>{
 
 app.use("/user", userRoute);
 
-app.get("/",(req,res)=>{
-  console.log("Somthing went wrong")
-  res.send("okk")
-})
-
-
 
 const Port = process.env.PORT || 8000
 

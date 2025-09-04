@@ -75,7 +75,7 @@ const ProfileModel=require("../models/profileModel");
 // const jwt = require("jsonwebtoken");
 
 const useSave=async(req,res)=>{
-
+   
 }
 
 module.exports = {
