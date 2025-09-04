@@ -169,13 +169,14 @@ const cors = require('cors');
 const userRoute = require("./routes/userRoute")
 const mongoose = require("mongoose");
 const Port=8000;
+require("dotenv").config();
 
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cors());
 
-mongoose.connect("mongodb://127.0.0.1:27017/shivrelation").then(()=>{
+mongoose.connect(process.env.DBCON).then(()=>{
   console.log("Database successfully Connected!!!");
 })
 

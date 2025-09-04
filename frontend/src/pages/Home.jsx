@@ -48,7 +48,7 @@
 
 
 
-
+//=====================================================error handling==============================================================
 
 
 // const Home=()=>{
@@ -85,7 +85,7 @@
 //     {/* <button onClick={handleSubmit}>Click Here</button>
 //      <button onClick={handleSubmit1}>About page</button>
 //      <button onClick={handleSubmit2}>Service Page</button>*/}
-//      Upload your images: <input type="fie" /><br/><br/>
+//      Upload your images: <input type="fiel" /><br/><br/>
 //      <button>Upload</button>
 //     </>
 //   )
@@ -208,7 +208,6 @@
 
 
 // import axios from "axios";
-
 // import { useState } from "react";
 
 // const Home=()=>{
@@ -308,7 +307,7 @@ const Home=()=>{
     let name=e.target.name;
     let value=e.target.value;
      setInput(Values=>({...Values,[name]:value}))
-     console.log(input);
+     console.log(input);  
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
