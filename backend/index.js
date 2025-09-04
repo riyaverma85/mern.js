@@ -168,22 +168,20 @@ const bodyparser = require('body-parser')
 const cors = require('cors');
 const userRoute = require("./routes/userRoute")
 const mongoose = require("mongoose");
-
+const Port=8000;
 
 // Body-parser middleware
 app.use(bodyparser.urlencoded({ extended: true }))
 app.use(bodyparser.json())
 app.use(cors());
 
-mongoose.connect(process.env.DBCON).then(()=>{
+mongoose.connect("mongodb://127.0.0.1:27017/shivrelation").then(()=>{
   console.log("Database successfully Connected!!!");
 })
 
 
-app.use("/user", userRoute);
+app.use("/", userRoute);
 
-
-const Port = process.env.PORT || 8000
 
 app.listen(Port, ()=>{
   console.log(`Server run on port ${Port}`);

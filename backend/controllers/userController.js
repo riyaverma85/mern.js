@@ -80,15 +80,21 @@ const userSave=async(req,res)=>{
     username:username,
     email:email
    })
-   console.log(User)
+   console.log(User);
    const Profile=await ProfileModel.create({
       firstname:firstname,
       lastname:lastname,
       userid:User._id
    })
+   res.send("okk");
+}
+const userDisplay=async()=>{
+    const Data=await ProfileModel.find().populate("userid")
+    res.send(Data);
 }
 
 module.exports = {
-     userSave
+     userSave,
+     userDisplay
 }
 
