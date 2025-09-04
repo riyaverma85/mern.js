@@ -18,6 +18,6 @@ const route=express.Router();
 const UserController = require("../controllers/userController");
 
 route.post("/usersave",  UserController.userSave);
-route.post("/display",  UserController.userDisplay);
+route.get("/display",  UserController.userDisplay);
 
 module.exports =route;

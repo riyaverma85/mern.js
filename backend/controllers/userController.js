@@ -71,8 +71,7 @@
 
 const UserModel = require("../models/userModel");
 const ProfileModel=require("../models/profileModel");
-// const bcrypt = require("bcryptjs");
-// const jwt = require("jsonwebtoken");
+
 
 const userSave=async(req,res)=>{
    const {username,email,firstname,lastname}=req.body;
@@ -88,7 +87,7 @@ const userSave=async(req,res)=>{
    })
    res.send("okk");
 }
-const userDisplay=async()=>{
+const userDisplay=async(req,res)=>{
     const Data=await ProfileModel.find().populate("userid")
     res.send(Data);
 }
