@@ -309,7 +309,7 @@ const Home=()=>{
     <h2 className='h2'> User Registration </h2>
            <Form id="from">
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Name</Form.Label>
+        <Form.Label>Enter Username</Form.Label>
         <Form.Control type="text" name="name" onChange={handleInput} />
       </Form.Group>
        <Form.Group className="mb-3" controlId="formBasicEmail">
@@ -317,9 +317,14 @@ const Home=()=>{
         <Form.Control type="email" name="email"  onChange={handleInput} />
       </Form.Group>
        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Password</Form.Label>
+        <Form.Label>Enter Firstname</Form.Label>
         <Form.Control type="password" name="password"  onChange={handleInput} />
       </Form.Group>
+      <Form.Group className="mb-3" controlId="formBasicEmail">
+        <Form.Label>Enter Lastname</Form.Label>
+        <Form.Control type="password" name="password"  onChange={handleInput} />
+      </Form.Group>
+
       <Button variant="primary" type="submit" onClick={handleSubmit}>
         Submit
       </Button>

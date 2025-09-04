@@ -74,8 +74,18 @@ const ProfileModel=require("../models/profileModel");
 // const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
 
-const useSave=async(req,res)=>{
-   
+const userSave=async(req,res)=>{
+   const {username,email,firstname,lastname}=req.body;
+   const User=await UserModel.create({
+    username:username,
+    email:email
+   })
+   console.log(User)
+   const Profile=await ProfileModel.create({
+      firstname:firstname,
+      lastname:lastname,
+      userid:User._id
+   })
 }
 
 module.exports = {
