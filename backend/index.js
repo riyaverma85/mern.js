@@ -113,44 +113,85 @@
 
 
 /*========================================================================MULTIPLE FILE UPLOAD==================================================================*/
-const express = require("express");
-require("dotenv").config();
-const cors= require("cors");
-const multer= require("multer");
+// const express = require("express");
+// require("dotenv").config();
+// const cors= require("cors");
+// const multer= require("multer");
 
-const  { v2 } = require("cloudinary");
-const  { CloudinaryStorage } = require("multer-storage-cloudinary");
-const app = express();
+// const  { v2 } = require("cloudinary");
+// const  { CloudinaryStorage } = require("multer-storage-cloudinary");
+// const app = express();
+// app.use(cors());
+
+// // Cloudinary Config
+// v2.config({
+//  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+//  api_key: process.env.CLOUDINARY_API_KEY,
+//  api_secret: process.env.CLOUDINARY_API_SECRET,
+// });
+
+// // Multer Storage
+// const storage = new CloudinaryStorage({
+//  cloudinary: v2,
+//  params: {
+//  folder: "mern_uploads",
+//  allowed_formats: ["jpg", "png", "jpeg", "pdf"],
+//  },
+// });
+
+// const upload = multer({ storage: storage });
+
+
+// // Multiple file upload API
+// app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
+//  try {
+//  const urls = req.files.map(file => file.path); // Cloudinary URLs
+//  res.json({ success: true, files: urls });
+//  } catch (err) {
+//  res.status(500).json({ success: false, message: err.message });
+//  }
+// });
+
+
+// app.listen(5000, () => console.log("Server running on port 5000"));
+
+
+
+
+
+
+
+
+const express = require("express");
+const app= express();
+const bodyparser = require('body-parser')
+const cors = require('cors');
+const userRoute = require("./routes/userRoute")
+const mongoose = require("mongoose");
+
+
+// Body-parser middleware
+app.use(bodyparser.urlencoded({ extended: true }))
+app.use(bodyparser.json())
 app.use(cors());
 
-// Cloudinary Config
-v2.config({
- cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
- api_key: process.env.CLOUDINARY_API_KEY,
- api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-// Multer Storage
-const storage = new CloudinaryStorage({
- cloudinary: v2,
- params: {
- folder: "mern_uploads",
- allowed_formats: ["jpg", "png", "jpeg", "pdf"],
- },
-});
-
-const upload = multer({ storage: storage });
+mongoose.connect(process.env.DBCON).then(()=>{
+  console.log("Database successfully Connected!!!");
+})
 
 
-// Multiple file upload API
-app.post("/upload-multiple", upload.array("files", 10), (req, res) => {
- try {
- const urls = req.files.map(file => file.path); // Cloudinary URLs
- res.json({ success: true, files: urls });
- } catch (err) {
- res.status(500).json({ success: false, message: err.message });
- }
-});
+app.use("/user", userRoute);
+
+app.get("/",(req,res)=>{
+  console.log("Somthing went wrong")
+  res.send("okk")
+})
 
 
-app.listen(5000, () => console.log("Server running on port 5000"));
+
+const Port = process.env.PORT || 8000
+
+app.listen(Port, ()=>{
+  console.log(`Server run on port ${Port}`);
+})
+

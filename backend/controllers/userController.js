@@ -1,62 +1,84 @@
-const UserModel = require("../models/userModel");
+// const UserModel = require("../models/userModel");
 // const bcrypt = require("bcryptjs");
 // const jwt = require("jsonwebtoken");
 
- const userAuth=async(req, res)=>{
- const token=req.header("x-auth-token");
- const verified = jwt.verify(token, "shivani123");
- console.log(verified.id);
- const User = await UserModel.findById(verified.id);
-  res.send({user:User});
-}
+//  const userAuth=async(req, res)=>{
+//  const token=req.header("x-auth-token");
+//  const verified = jwt.verify(token, "shivani123");
+//  console.log(verified.id);
+//  const User = await UserModel.findById(verified.id);
+//   res.send({user:User});
+// }
 
 
-const userRegistration = async (req, res) => {
-    const { name, email, password } = req.body;
+// const userRegistration = async (req, res) => {
+//     const { name, email, password } = req.body;
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
+//     const salt = await bcrypt.genSalt(10);
+//     const hashedPassword = await bcrypt.hash(password, salt);
 
-    const User = await UserModel.create({
-        name: name,
-        email: email,
-        password: hashedPassword
-    })
-   res.status(201).json({msg:"You are Succesfully Registered!"});
-}
+//     const User = await UserModel.create({
+//         name: name,
+//         email: email,
+//         password: hashedPassword
+//     })
+//    res.status(201).json({msg:"You are Succesfully Registered!"});
+// }
 
-const userLogin = async (req, res) => {
+// const userLogin = async (req, res) => {
  
-    const { email, password } = req.body;
+//     const { email, password } = req.body;
    
-    const User = await UserModel.findOne({ email: email });
+//     const User = await UserModel.findOne({ email: email });
 
-    if (!User)
-        {
-           res.send("Invalid Email!");
-        }
+//     if (!User)
+//         {
+//            res.send("Invalid Email!");
+//         }
 
-        const validPassword = await bcrypt.compare(password, User.password);
+//         const validPassword = await bcrypt.compare(password, User.password);
 
-        if (!validPassword)
-        {
-            res.send("Invalid Password!");
-        }
-    //    res.status(202).send({ msg: "You are successfully logged in!",
-    //   user: {
-    //     name: User.name,
-    //     email: User.email
-    //   }
-    // });
+//         if (!validPassword)
+//         {
+//             res.send("Invalid Password!");
+//         }
+//        res.status(202).send({ msg: "You are successfully logged in!",
+//       user: {
+//         name: User.name,
+//         email: User.email
+//       }
+//     });
 
-   const token = await jwt.sign({id:User._id}, "shivani123",  { expiresIn: '7 days' } )
+//    const token = await jwt.sign({id:User._id}, "shivani123",  { expiresIn: '7 days' } )
      
-     res.send({token:token});
-};
+//      res.send({token:token});
+// };
 
+
+// module.exports = {
+//     userRegistration,
+//     userLogin,
+//     userAuth
+// }
+
+
+
+
+
+
+
+
+
+const UserModel = require("../models/userModel");
+const ProfileModel=require("../models/profileModel");
+// const bcrypt = require("bcryptjs");
+// const jwt = require("jsonwebtoken");
+
+const useSave=async(req,res)=>{
+
+}
 
 module.exports = {
-    userRegistration,
-    userLogin,
-    userAuth
+     userSave
 }
+
