@@ -146,17 +146,17 @@ const Registration=()=>{
         <tr>
           <td> {key.authername} </td>
           <td> {key.email} </td>
-          <td> {
-               key.booksid?.map((key1)=>{
-            return(
-              <>
-              <p>
-                <span>{key1.bookname}-{key1.price}</span>
-              </p>
-              </>
-            )
-          })
-           } 
+          <td>
+            {key.booksid.map((item)=>{
+              return(
+                <>
+                <p>
+                  <span>{item.bookname}-{item.price}</span>
+                </p>
+            
+                </>
+              )
+            })}
           </td>
           
           <td>
