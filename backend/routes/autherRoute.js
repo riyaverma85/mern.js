@@ -1,9 +1,9 @@
 
 const express = require("express");
 const route=express.Router();
-const UserController = require("../controllers/userController");
+const autherController = require("../controllers/autherController");
 
-route.post("/usersave",  UserController.userSave);
-route.get("/display",  UserController.userDisplay);
+route.post("/authersave",  autherController.addAuther);
+ route.get("/autherdisplay",  UserController.autherDisplay);
 
 module.exports =route;

@@ -160,13 +160,41 @@
 
 
 
+// //============================================================ONE-TO-ONE RELATION===============================================================================
 
+// const express = require("express");
+// const app= express();
+// const bodyparser = require('body-parser')
+// const cors = require('cors');
+// const userRoute = require("./routes/userRoute")
+// const mongoose = require("mongoose");
+// const Port=8000;
+// require("dotenv").config();
+
+// // Body-parser middleware
+// app.use(bodyparser.urlencoded({ extended: true }))
+// app.use(bodyparser.json())
+// app.use(cors());
+
+// mongoose.connect(process.env.DBCON).then(()=>{
+//   console.log("Database successfully Connected!!!");
+// })
+
+
+// app.use("/", userRoute);
+
+
+// app.listen(Port, ()=>{
+//   console.log(`Server run on port ${Port}`);
+// })
+
+//============================================================ONE-TO-MANY RELATION===============================================================================
 
 const express = require("express");
 const app= express();
 const bodyparser = require('body-parser')
 const cors = require('cors');
-const userRoute = require("./routes/userRoute")
+const autherRoute = require("./routes/autherRoute")
 const mongoose = require("mongoose");
 const Port=8000;
 require("dotenv").config();
@@ -181,7 +209,7 @@ mongoose.connect(process.env.DBCON).then(()=>{
 })
 
 
-app.use("/", userRoute);
+app.use("/", autherRoute);
 
 
 app.listen(Port, ()=>{

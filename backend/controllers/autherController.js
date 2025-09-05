@@ -13,9 +13,13 @@ const addAuther=async(req,res)=>{
         email:email,
         // booksid:[]
     })
-    await autherModel.findByIdAndUpdate(auther._id,{$push:{booksid:book,_id}})
+    await autherModel.findByIdAndUpdate(auther._id,{$push:{booksid:book._id}})
     res.send("data save")
 }
+const autherDisplay=async(req,res)=>{
+     const 
+}
 module.exports={
-    addAuther
+    addAuther,
+    autherDisplay
 }

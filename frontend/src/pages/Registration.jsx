@@ -58,7 +58,7 @@
 
 
 
-
+//============================================================ONE-TO-ONE RELATION====================================================================================
 import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
