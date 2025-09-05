@@ -85,7 +85,7 @@
 //     {/* <button onClick={handleSubmit}>Click Here</button>
 //      <button onClick={handleSubmit1}>About page</button>
 //      <button onClick={handleSubmit2}>Service Page</button>*/}
-//      Upload your images: <input type="fiel" /><br/><br/>
+//      Upload your images: <input type="file" /><br/><br/>
 //      <button>Upload</button>
 //     </>
 //   )
@@ -144,7 +144,7 @@
 
 
 
-
+//==============================================================FILE UPLOAD===========================================================================
 
 
 // import axios from "axios";
@@ -204,7 +204,7 @@
 
 
 
-
+//==============================================================FILE UPLOAD(CLOUDINARY)========================
 
 
 // import axios from "axios";
@@ -245,7 +245,7 @@
 
 
 
-
+//==============================================================FILE UPLOAD(MULTIPLE-FILE UPLOADIN USING CLOUDINARY)========================
 
 // import { useState } from "react";
 // import axios from "axios";
@@ -296,7 +296,7 @@
 
 
 
-
+//========================================================ONE-TO-ONE RELATION=======================================================================
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import { useState } from "react";
