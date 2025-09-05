@@ -369,29 +369,29 @@ const Home=()=>{
   }
   const handleSubmit=async(e)=>{
     e.preventDefault();
-    let api="http://localhost:8000/usersave";
+    let api="http://localhost:8000/authersave";
     const response=await axios.post(api,input);
     console.log(response);
   }
   return(
     <>
-    <h2 className='h2'>User Data </h2>
+    <h2 className='h2'>Auther Details </h2>
            <Form id="from">
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Username</Form.Label>
-        <Form.Control type="text" name="username" onChange={handleInput} />
+        <Form.Label>Enter Authername</Form.Label>
+        <Form.Control type="text" name="authername" onChange={handleInput} />
       </Form.Group>
        <Form.Group className="mb-3" controlId="formBasicEmail">
         <Form.Label>Enter Email</Form.Label>
         <Form.Control type="email" name="email"  onChange={handleInput} />
       </Form.Group>
        <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Firstname</Form.Label>
-        <Form.Control type="text" name="firstname"  onChange={handleInput} />
+        <Form.Label>Enter Bookname</Form.Label>
+        <Form.Control type="text" name="bookname"  onChange={handleInput} />
       </Form.Group>
       <Form.Group className="mb-3" controlId="formBasicEmail">
-        <Form.Label>Enter Lastname</Form.Label>
-        <Form.Control type="text" name="lastname"  onChange={handleInput} />
+        <Form.Label>Enter Price</Form.Label>
+        <Form.Control type="text" name="price"  onChange={handleInput} />
       </Form.Group>
 
       <Button variant="primary" type="submit" onClick={handleSubmit}>
