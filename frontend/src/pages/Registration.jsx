@@ -147,7 +147,7 @@ const Registration=()=>{
           <td> {key.authername} </td>
           <td> {key.email} </td>
           <td> {
-               key.booksid.map((key1)=>{
+               key.booksid?.map((key1)=>{
             return(
               <>
               <p>

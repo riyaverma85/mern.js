@@ -14,8 +14,8 @@ const Addmore=()=>{
     return(
         <>
         <h3>Add More</h3>
-        Enter Bookname: <input type="text" value={name} onChange={(e)=>{setName(e.target.name)}}/><br/><br/>
-        Enter Bookname: <input type="text" value={price} onChange={(e)=>{setPrice(e.target.price)}}/><br/><br/>
+        Enter Bookname: <input type="text" value={name} onChange={(e)=>{setName(e.target.value)}}/><br/><br/>
+        Enter Bookname: <input type="text" value={price} onChange={(e)=>{setPrice(e.target.value)}}/><br/><br/>
         <button onClick={handleSubmit}>Save!</button>
         </>
     )
