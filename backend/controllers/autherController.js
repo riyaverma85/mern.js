@@ -17,7 +17,8 @@ const addAuther=async(req,res)=>{
     res.send("data save")
 }
 const autherDisplay=async(req,res)=>{
-     const 
+     const auther=await autherModel.find().populate("booksid")
+     res.send(auther)
 }
 module.exports={
     addAuther,

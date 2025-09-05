@@ -46,6 +46,7 @@ import Layout from "./Layout";
 import Home from "./pages/Home";
 import Registration from "./pages/Registration";
 import Login from "./pages/Login";
+import Addmore from "./pages/Addmore";
 
 
 const App=()=>{
@@ -58,6 +59,7 @@ const App=()=>{
           <Route path="home" element={<Home/>}/>
          <Route path="registration" element={<Registration/>}/>
          <Route path="login" element={<Login/>} />
+         <Route path="addmore/:id" element={<Addmoree/>} />
         </Route>
       </Routes>
       

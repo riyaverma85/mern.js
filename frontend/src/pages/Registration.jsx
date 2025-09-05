@@ -58,7 +58,67 @@
 
 
 
-//============================================================ONE-TO-ONE RELATION====================================================================================
+// //============================================================ONE-TO-ONE RELATION====================================================================================
+// import { useState, useEffect } from "react";
+// import Table from 'react-bootstrap/Table';
+// import axios from "axios";
+// const Registration=()=>{
+//   const [mydata, setMydata] = useState([]);
+    
+  
+//     const loadData = async () => {
+//       let api ="http://localhost:8000/display";
+//        const response  = await axios.get(api);
+//       console.log(response.data);
+//       setMydata(response.data);
+//     }
+//     useEffect(() => {
+//       loadData();
+//     }, []);
+   
+  
+//   const ans = mydata.map((key) => {
+//     return (
+//       <>
+//         <tr>
+//           <td> {key.firstname} </td>
+//           <td> {key.lastname} </td>
+//           <td> {key.userid.email} </td>
+//           <td> {key.userid.username} </td>
+          
+//         </tr>
+//       </>
+//     )
+//   })
+//   return (
+//     <>
+//       <h1 align="center">User data</h1>
+//       <Table striped bordered hover align="center" >
+//         <thead>
+//           <tr>
+//             <th>FIRSTNAME</th>
+//             <th>LASTNAME</th>
+//             <th>EMAIL</th>
+//             <th>USERNAME</th>
+//           </tr>
+//         </thead>
+//         <tbody>
+//           {ans}
+//         </tbody>
+//       </Table>
+//     </>
+//   )
+// }
+// export default Registration;
+
+
+
+
+
+
+
+
+//============================================================ONE-TO-MANY RELATION====================================================================================
 import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
@@ -67,7 +127,7 @@ const Registration=()=>{
     
   
     const loadData = async () => {
-      let api ="http://localhost:8000/display";
+      let api ="http://localhost:8000/autherdisplay";
        const response  = await axios.get(api);
       console.log(response.data);
       setMydata(response.data);
@@ -81,9 +141,9 @@ const Registration=()=>{
     return (
       <>
         <tr>
-          <td> {key.firstname} </td>
-          <td> {key.lastname} </td>
-          <td> {key.userid.email} </td>
+          <td> {key.authername} </td>
+          <td> {key.email} </td>
+          <td> {key.userid.map(keyemail} </td>
           <td> {key.userid.username} </td>
           
         </tr>
@@ -96,9 +156,9 @@ const Registration=()=>{
       <Table striped bordered hover align="center" >
         <thead>
           <tr>
-            <th>FIRSTNAME</th>
-            <th>LASTNAME</th>
+            <th>AUTHERNAME</th>
             <th>EMAIL</th>
+            <th>BOOKS DETAILS/PRICE</th>
             <th>USERNAME</th>
           </tr>
         </thead>
