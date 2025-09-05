@@ -31,5 +31,6 @@ const bookSave=async(req,res)=>{
 }
 module.exports={
     addAuther,
-    autherDisplay
+    autherDisplay,
+    bookSave
 }
