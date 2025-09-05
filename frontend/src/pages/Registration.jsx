@@ -122,9 +122,10 @@
 import { useState, useEffect } from "react";
 import Table from 'react-bootstrap/Table';
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 const Registration=()=>{
   const [mydata, setMydata] = useState([]);
-    
+  const navigte=useNavigate();
   
     const loadData = async () => {
       let api ="http://localhost:8000/autherdisplay";
@@ -136,16 +137,31 @@ const Registration=()=>{
       loadData();
     }, []);
    
-  
+  const addBook=(id)=>{
+    navigte(`/addmore/${id}`)
+  }
   const ans = mydata.map((key) => {
     return (
       <>
         <tr>
           <td> {key.authername} </td>
           <td> {key.email} </td>
-          <td> {key.userid.map(keyemail} </td>
-          <td> {key.userid.username} </td>
+          <td> {
+               key.booksid.map((key1)=>{
+            return(
+              <>
+              <p>
+                <span>{key1.bookname}-{key1.price}</span>
+              </p>
+              </>
+            )
+          })
+           } 
+          </td>
           
+          <td>
+            <button onClick={()=>{addBook(key._id)}}>Addmore book</button>
+          </td>
         </tr>
       </>
     )
